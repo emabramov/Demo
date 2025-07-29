@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="createCategoryTable" author="emabramov">
+        <createTable tableName="news_category">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="createNewsTable" author="emabramov">
+        <createTable tableName="news">
+            <column name="id" type="serial">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(255)"/>
+            <column name="text" type="varchar(255)"/>
+            <column name="category_id" type="serial">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creation_time" type="timestamp(6)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="changeTypeIdInNewsCategory" author="emabramov">
+        <modifyDataType tableName="news_category" columnName="id" newDataType="bigint"/>
+    </changeSet>
+    <changeSet id="changeTypeIdInNews" author="emabramov">
+        <modifyDataType tableName="news" columnName="id" newDataType="bigint"/>
+    </changeSet>
+    <changeSet id="changeTypeCategoryIdInNewsToBigint" author="emabramov">
+        <modifyDataType tableName="news" columnName="category_id" newDataType="bigint"/>
+    </changeSet>
+    <changeSet id="revertTypeSerialToCategoryInNewsTable" author="emabramov">
+        <modifyDataType tableName="news" columnName="category_id" newDataType="serial"/>
+    </changeSet>
+</databaseChangeLog>
