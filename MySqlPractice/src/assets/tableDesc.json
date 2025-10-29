@@ -1,0 +1,27 @@
+{
+  "courses": [
+    "id",
+    "name",
+    "duration",
+    "type",
+    "description",
+    "teacher_id",
+    "students_count",
+    "price",
+    "price_per_hour"
+  ],
+  "purchaselist": [
+    "student_name",
+    "course_name",
+    "price",
+    "subscription_date"
+  ],
+  "students": [],
+  "subscriptions": [
+    "student_id",
+    "course_id",
+    "subscription_date",
+    "student_id"
+  ],
+  "teachers": []
+}
